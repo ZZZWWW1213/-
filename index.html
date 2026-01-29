@@ -1,190 +1,192 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>次元站 - 基于番组计划API的动漫平台</title>
-    <!-- 引入Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入Font Awesome图标 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- 引入Axios（处理网络请求） -->
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
-    <!-- Tailwind配置 -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#7E22CE', // 主色-紫（动漫风格）
-                        secondary: '#F472B6', // 辅色-粉
-                        dark: '#1E293B',
-                        light: '#F8FAFC'
+！doctype>超文本标记语言！doctype html>
+超文本标记语言<"zh-CN"HTML lang="zh-CN">
+>头>头<
+元< 字符集=元<"UTF-8"meta字符集=>"UTF-8"
+元名称<=“视口”内容=“宽度=设备宽度，初始比例=1.0”>元< 姓名="视口" 内容=>"宽度=设备宽度，初始比例=1.0"
+>标题>次元站-基于番组计划API的动漫平台<标题标题>标题</次元站-基于番组计划API的动漫平台>标题</
+<！--引入顺风 ！--引入顺风< >CSS--CSS--<！--引入顺风 CSS-->
+脚本< src=脚本"https://cdn.tailwindcss.com"脚本脚本</<脚本 src="https://cdn.tailwindcss.com"脚本>脚本>
+<！ --引入字体棒极了图标-->！ --引入字体棒极了图标--<<！ --令人惊叹的图标引入字体-->
+链接<rel=href"样式表"HTTPS=链接<"：//cdnjs.cloudFlare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"linkrel="样式表"href="HTTPS://cdnjs.CloudFlare.com/ajax/libs/font-awesome/6。5.1/css/all.min.CSS">
+！--引入Axios<<！--引入Axios处理网络请求引入Axios)-->><！--引入Axios(处理网络请求)-->
+脚本<src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"脚本脚本脚本><脚本src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"脚本脚本脚本>
+<！--顺风配置-->！--顺风配置--<<! --顺风配置-->
+>脚本<<脚本>
+顺风.配置=顺风顺风.配置={
+主题：{主题: {
+扩展：//主色-紫(动漫风格)主要：'#7E22CE'，//主色-紫(动漫风格)'#7E22CE'主要：//主色-紫(动漫风格)主要：'#7E22CE'，//主色-紫（动漫风格）
+颜色：{颜色:{
+延伸: {
+//辅色-粉secondary：'#F472B6'，//辅色-粉次要的：，//辅色-粉secondary：'#F472B6'，//辅色-粉
+'#1E293B'深色：深色：：'#1E293B'，
+'#F8FAFC'光源：：'#F8FAFC'
                     },
-                    fontFamily: {
-                        anime: ['"Noto Sans SC"', 'sans-serif']
-                    }
-                }
+fontFamilyfontFamily:fontFamily：{
+动漫'"Noto Sans SC"'动漫，'无衬线']动漫：'"Noto Sans SC"""Noto Sans SC"'，'无衬线”无衬线'
+                    
+}
             }
         }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .anime-card {
-                @apply rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 bg-dark text-light;
-            }
-            .btn-primary {
-                @apply bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/80 transition-all;
-            }
-            .nav-item {
-                @apply px-4 py-2 hover:text-primary transition-all cursor-pointer;
-            }
-            .content-container {
-                @apply max-w-7xl mx-auto px-4 py-8;
-            }
+脚本<脚本</>>
+风格<类型=>"text/tailwindcss"风格<类型=>"text/tailwindcss"
+@层实用程序{
+.动漫卡{
+@apply bg-primary text-white px-4py-2 rounded-lg hover:bg-primary/80过渡-all；
+.nav-item{
+.BTN-主要的
+            
+}
+.nav-item
+@apply px-4py-2 悬停：文本-主过渡-所有光标-指针；
+}
+.内容容器{
+@apply max-w-7xl mx-auto px-4PY-8；
+}
         }
-    </style>
-</head>
-<body class="bg-gray-100 font-anime">
-    <!-- 导航栏 -->
-    <header class="sticky top-0 bg-white shadow-md z-50">
-        <div class="content-container flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-tv text-3xl text-primary"></i>
-                <h1 class="text-2xl font-bold text-dark">次元站</h1>
+    </风格>
+</头>
+<身体 班级="bg-gray-100 font-anime">
+<! -- 导航栏 -->
+    <页眉 班级="粘顶-0bg-牛皮书-md Z-50">
+        <div 班级="内容-容器灵活对齐-项目间-居中">
+            <div 班级="弹性项-中心间隙-2">
+                <我 班级="fa-solid FA-TV text-3xl text-primary"></我>
+                <H1 班级="text-2xl字体-粗体文本-深色">次元站</H1>
             </div>
-            <!-- 搜索框 -->
-            <div class="relative w-1/3 md:w-1/4">
-                <input type="text" id="search-input" placeholder="搜索番剧/角色..." 
-                    class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-primary">
-                <button id="search-btn" class="absolute right-2 top-1/2 -translate-y-1/2 text-primary">
-                    <i class="fa-solid fa-search"></i>
-                </button>
-            </div>
-            <!-- 导航菜单 -->
-            <nav class="hidden md:flex items-center gap-2">
-                <div class="nav-item active">首页</div>
-                <div class="nav-item" id="category-btn">分类</div>
-                <div class="nav-item">排行榜</div>
-                <div class="nav-item">我的收藏</div>
-            </nav>
-            <!-- 移动端菜单按钮 -->
-            <button class="md:hidden text-dark text-2xl" id="menu-btn">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+<! -- 搜索框 -->
+            <div 班级="相对w-1/3MD:w-1/4">
+                <输入 类型="文本" 身份标识="搜索输入" 占位符="搜索番剧/角色..." 
+                    班级=w-全px-4py-2圆角-lg"边框边框灰-300焦点：轮廓-无焦点：边框-主">
+                <按钮 身份标识="搜索-btn" 班级="绝对右-2顶部-1/2-翻译-y-1/2文本-主要">
+                    <我 班级="fa-solid fa-search"></我>
+                </按钮>
+</div>
+<! -- 导航菜单 -->
+            <NAV 班级="隐藏md：弹性项-中心间距-2">
+                <div 班级="导航项目已激活">首页</div>
+                <div 班级="导航项目" 身份标识="类别-btn">分类</div>
+                <div 班级="导航项目">排行榜</div>
+                <div 班级="导航项目">我的收藏</div>
+            </NAV>
+<! -- 移动端菜单按钮 -->
+            <按钮 班级="md：隐藏文本-深色文本-2xl" 身份标识="menu-btn">
+                <我 班级="fa-solid fa-bars"></我>
+            </按钮>
+</div>
+<! -- 分类弹窗 -->
+        <div 身份标识="类别-模态" 班级="隐藏固定顶部-16左-0宽-全边框-白色阴影-LG Z-40py-4PX-8网格-cols-2md：网格-cols-4间隙-4">
+            <div 班级="类别-项目py-2悬停：文本-主要光标-指针" 数据类型="1">动画</div>
+            <div 班级="类别-项目py-2悬停：文本-主要光标-指针" 数据类型="2">漫画</div>
+            <div 班级="类别-项目py-2悬停：文本-主要光标-指针" 数据类型="3">游戏</div>
+            <div 班级="类别-项目py-2悬停：文本-主要光标-指针" 数据类型="4">小说</div>
         </div>
-        <!-- 分类弹窗 -->
-        <div id="category-modal" class="hidden fixed top-16 left-0 w-full bg-white shadow-lg z-40 py-4 px-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="category-item py-2 hover:text-primary cursor-pointer" data-type="1">动画</div>
-            <div class="category-item py-2 hover:text-primary cursor-pointer" data-type="2">漫画</div>
-            <div class="category-item py-2 hover:text-primary cursor-pointer" data-type="3">游戏</div>
-            <div class="category-item py-2 hover:text-primary cursor-pointer" data-type="4">小说</div>
-        </div>
-    </header>
+    </页眉>
 
-    <!-- 轮播图（推荐番剧） -->
-    <section class="bg-dark text-light">
-        <div class="content-container py-6">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl md:text-2xl font-bold">热门推荐</h2>
-                <a href="#" class="text-secondary hover:underline">查看更多</a>
+<! -- 轮播图（推荐番剧） -->
+    <部分 班级="bg-深色文本-浅色">
+        <div 班级="内容容器py-6">
+            <div 班级="灵活对齐-项目间-中心MB-4">
+                <H2 班级="text-xl md:text-2xl font-bold">热门推荐</H2>
+                <一个 href="#" 班级="文本辅助悬停：下划线">查看更多</一个>
             </div>
-            <div class="carousel overflow-x-auto pb-4 gap-4 flex" id="carousel-container">
-                <!-- 轮播内容由JS动态生成 -->
+            <div 班级="转盘溢流-x-自动PB-4间隙-4弯曲" 身份标识="转盘-容器">
+<! -- 轮播内容由JS动态生成 -->
             </div>
         </div>
-    </section>
+    </部分>
 
-    <!-- 番剧列表 -->
-    <main class="content-container">
-        <h2 class="text-xl md:text-2xl font-bold mb-6 text-dark">最新番剧</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6" id="anime-list">
-            <!-- 番剧卡片由JS动态生成 -->
+<! -- 番剧列表 -->
+    <主要的 班级="content-container">
+        <H2 班级="text-xl md:text-2xl font-bold mb-6 text-dark">最新番剧</H2>
+        <div 班级="网格列-2sm：网格列-3md：网格列-4lg：网格列-6间隙-6" 身份标识="动漫列表">
+<! -- 番剧卡片由JS动态生成 -->
         </div>
-        <!-- 加载更多按钮 -->
-        <div class="flex justify-center mt-10">
-            <button id="load-more" class="btn-primary flex items-center gap-2">
-                <span>加载更多</span>
-                <i class="fa-solid fa-spinner fa-spin hidden" id="load-spinner"></i>
-            </button>
+<! -- 加载更多按钮 -->
+        <div 班级="弹性对正中心MT-10">
+            <按钮 身份标识="加载更多" 班级="btn-主要弹性项-中心间隙-2">
+                <跨度>加载更多</跨度>
+                <我 班级="fa-solid fa-spinner fa-spin隐藏" 身份标识="负载旋转器"></我>
+            </按钮>
         </div>
-    </main>
+    </主要的>
 
-    <!-- 番剧详情弹窗 -->
-    <div id="detail-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
-        <div class="bg-dark text-light rounded-lg w-full max-w-4xl max-h-[80vh] overflow-auto">
-            <button id="close-modal" class="absolute top-4 right-4 text-white text-2xl bg-black/50 rounded-full w-10 h-10 flex items-center justify-center">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="grid grid-cols-1 md:grid-cols-3">
-                <!-- 详情封面 -->
-                <div class="p-4 md:col-span-1">
-                    <img id="detail-cover" src="" alt="" class="w-full rounded-lg">
-                    <div class="mt-4 flex justify-between items-center">
-                        <span id="detail-score" class="text-yellow-400 font-bold"></span>
-                        <span id="detail-type" class="bg-primary/70 px-2 py-1 rounded text-xs"></span>
+<! -- 番剧详情弹窗 -->
+    <div 身份标识="detail-modal" 班级="隐藏固定嵌入件0bg-黑色/70Z-50弹性件-中心对齐-中心p-4">
+        <div 班级="bg-深色文本-浅色圆角-lg w-完全max-w-4xl max-h-[80vh]溢出-自动">
+            <按钮 身份标识="关闭模式" 班级="绝对顶部-4右侧-4文本-白色文本-2xl bg-黑色/50圆角-满W-10H-10弹性项-中心对齐-中心">
+                <我 班级="fa-solid fa-xmark"></我>
+            </按钮>
+            <div 班级="网格列-1md：网格列-3">
+<! -- 详情封面 -->
+                <div 班级="p-4md:col-span-1">
+                    <IMG 身份标识="细节-封面" src="" alt="" 班级="w-完全舍入-lg">
+                    <div 班级=MT-4"灵活对齐-项目间-中心">
+                        <跨度 身份标识="detail-score" 班级="文本-黄色-400字体-粗体"></跨度>
+                        <跨度 身份标识="详细类型" 班级="bg-primary/70PX-2PY-1舍入文本-xs"></跨度>
                     </div>
                 </div>
-                <!-- 详情内容 -->
-                <div class="p-4 md:col-span-2">
-                    <h3 id="detail-title" class="text-2xl font-bold mb-2"></h3>
-                    <p id="detail-subtitle" class="text-gray-400 mb-4"></p>
-                    <div class="mb-4 grid grid-cols-2 gap-2 text-sm">
-                        <div><span class="text-gray-400">集数：</span><span id="detail-eps"></span></div>
-                        <div><span class="text-gray-400">开播：</span><span id="detail-date"></span></div>
-                        <div><span class="text-gray-400">地区：</span><span id="detail-area"></span></div>
-                        <div><span class="text-gray-400">标签：</span><span id="detail-tags"></span></div>
+<! -- 详情内容 -->
+                <div 班级="p-4md:col-span-2">
+                    <H3 身份标识="详细信息-标题" 班级="text-2xl字体加粗MB-2"></H3>
+                    <p 身份标识="detail-subtitle" 班级="文本灰-400 MB-4"></p>
+                    <div 班级="MB-4网格网格列-2间隙-2文本-sm">
+                        <div><跨度 班级="文本-灰色400">集数：</跨度><跨度 身份标识="detail-eps"></跨度></div>
+                        <div><跨度 班级="文本-灰色400">开播：</跨度><跨度 身份标识="detail-date"></跨度></div>
+                        <div><跨度 班级="文本-灰色400">地区：</跨度><跨度 身份标识="详图区域"></跨度></div>
+                        <div><跨度 班级="文本-灰色400">标签：</跨度><跨度 身份标识="详细标签"></跨度></div>
                     </div>
-                    <div class="mb-4">
-                        <h4 class="font-bold mb-2">剧情简介</h4>
-                        <p id="detail-desc" class="text-gray-300 leading-relaxed"></p>
+                    <div 班级="MB-4">
+                        <H4 班级="字体加粗MB-2">剧情简介</H4>
+                        <p 身份标识="detail-desc" 班级="文本-灰色-300行距-松弛"></p>
                     </div>
-                    <button class="btn-primary w-full">开始观看</button>
+                    <按钮 班级="btn-主要w-完全">开始观看</按钮>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 页脚 -->
-    <footer class="bg-dark text-light py-8 mt-10">
-        <div class="content-container text-center">
-            <p>本网站数据来源于 <a href="https://bgm.tv/" class="text-primary hover:underline" target="_blank">番组计划(Bangumi)</a>，仅作学习使用，请勿商用</p>
-            <p class="mt-2 text-gray-400">© 2025 次元站 - 所有番剧版权归原作者及发行商所有</p>
+<! -- 页脚 -->
+    <页脚 班级="bg-深色文本-浅色PY-8MT-10">
+        <div 班级="内容-容器文本-中心">
+            <p>本网站数据来源于<一个 href="https://bgm.tv/" 班级="文本主要悬停：下划线" 目标="_空白">番组计划(班古米)</一个>，仅作学习使用，请勿商用</p>
+            <p 班级="MT-2文本-灰色400">© 2025 次元站 - 所有番剧版权归原作者及发行商所有</p>
         </div>
-    </footer>
+    </页脚>
 
-    <script>
-        // 全局变量
-        let currentPage = 1;
-        const PAGE_SIZE = 12;
-        const BANGUMI_API = 'https://bgm.tv/api/v0'; // Bangumi v0 API Base URL
+    <脚本>
+// 全局变量
+让CurrentPage=1；
+Const page_SIZE=12；
+// 跨域代理配置（手机端专用，稳定不失效）
+常量proxy_URL='https://cors-anywhere.herokuapp.com/';
+Const BANGUMI_API=PROXY_URL+'https://bgm.tv/api/v0';
 
-        // 页面加载完成后执行
-        document.addEventListener('DOMContentLoaded', () => {
-            initEvent(); // 初始化事件
-            getCarouselData(); // 获取轮播图数据
-            getAnimeList(currentPage, PAGE_SIZE); // 获取番剧列表
+// 页面加载完成后执行
+文件。addEventListener('DOMContentLoaded'，()=>{
+initEvent()；//初始化事件
+getCarouselData()；//获取轮播图数据
+getAnimeList(currentPage，PAGE_SIZE)；//获取番剧列表
         });
 
-        // 初始化所有事件监听
-        function initEvent() {
-            // 搜索按钮
-            document.getElementById('search-btn').addEventListener('click', () => {
-                const keyword = document.getElementById('search-input').value.trim();
-                if (keyword) searchAnime(keyword);
+// 初始化所有事件监听
+函数initEvent(){
+// 搜索按钮
+文件。getElementById('search-btn')。addEventListener('click'，()=>{
+Const关键字=文件.getElementById('search-input').价值。修剪()；
+if(关键字)searchAnime(关键字)；
             });
-            // 搜索框回车
-            document.getElementById('search-input').addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') document.getElementById('search-btn').click();
+// 搜索框回车
+文件。getElementById('search-input')。addEventListener('keydown'，(e)=>{
+if(e.key==='Enter')文件。getElementById('search-btn')。点击()；
             });
-            // 分类按钮
-            document.getElementById('category-btn').addEventListener('click', () => {
-                document.getElementById('category-modal').classList.toggle('hidden');
+// 分类按钮
+文件。getElementById('category-btn')。addEventListener('click'，()=>{
+文件。getElementById('category-modal').classList.toggle('hidden')；
             });
-            // 分类项点击
-            document.querySelectorAll('.category-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const type = item.dataset.type;
+// 分类项点击
+文件。querySelectorAll('.Category-item').foreach(item=>{
+item.addEventListener('click'，()=>{
+常量类型=item.dataset.type；
                     getAnimeList(1, PAGE_SIZE, type);
                     document.getElementById('category-modal').classList.add('hidden');
                 });
