@@ -1,222 +1,222 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>次元签到 - 后台管理</title>
-    <style>
-        * {margin: 0; padding: 0; box-sizing: border-box; font-family: "微软雅黑", sans-serif;}
-        body {background: linear-gradient(135deg, #27272a, #18181b); min-height: 100vh; padding: 20px; color: white;}
-        .login-box, .admin-box {max-width: 600px; margin: 80px auto; background: rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; backdrop-filter: blur(10px); border: 2px solid #a855f7;}
-        .admin-box {display: none;}
-        h2 {text-align: center; color: #f0c8ff; margin-bottom: 30px; font-size: 26px;}
-        .input-box {margin: 20px 0;}
-        label {display: block; margin-bottom: 8px; color: #d8b4fe; font-size: 16px;}
-        input, select {width: 100%; padding: 12px; border: 2px solid #7e22ce; border-radius: 10px; background: rgba(0,0,0,0.3); color: white; font-size: 16px; outline: none;}
-        input::placeholder {color: #9ca3af;}
-        .btn {width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; background: linear-gradient(90deg, #9333ea, #c084fc); color: white; transition: all 0.3s;}
-        .btn:hover {transform: translateY(-3px); box-shadow: 0 5px 15px rgba(147,51,234,0.5);}
-        .btn-group {display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;}
-        .sub-btn {background: linear-gradient(90deg, #3b82f6, #60a5fa);}
-        .modal {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 999;}
-        .modal-content {background: #18181b; border: 2px solid #a855f7; border-radius: 15px; padding: 30px; text-align: center; width: 80%; max-width: 400px;}
-        .modal-content h3 {color: #f0c8ff; margin-bottom: 20px;}
-        .modal-content p {font-size: 18px; margin: 10px 0; color: #e5e7eb;}
-        .close-btn {margin-top: 20px; padding: 10px 30px; background: #7e22ce; color: white; border-radius: 8px; border: none; cursor: pointer;}
-        .tip {color: #9ca3af; font-size: 14px; margin-top: 10px; text-align: center;}
-    </style>
-</head>
-<body>
-    <!-- 登录界面 -->
-    <div class="login-box" id="loginBox">
-        <h2>后台管理系统 - 密码验证</h2>
-        <div class="input-box">
-            <label for="pwdInput">管理员密码</label>
-            <input type="password" id="pwdInput" placeholder="请输入管理员密码">
-        </div>
-        <button class="btn" onclick="checkPwd()">验证登录</button>
+！doctype< 超文本标记语言超文本标记语言>
+超文本标记语言< 朗=
+<头>
+    <元 字符集="UTF-8">
+    <元 姓名="视口" 内容="宽度=设备宽度，初始比例=1.0">
+    <标题>静次元签到 - 后台管理</标题>
+    <风格>
+*{边缘: 0; 填充: 0; 箱体尺寸: 边框框; 字体系列: "微软雅黑", 无衬线;}
+身体{背景：线性梯度(135deg，#27272a，#18181b);最小高度：100VH；填充：20px；颜色：白色的；}
+。登录框，.管理盒{最大宽度：600PX；边缘：80px自动；背景：RGBA(255,255,255,0.1);边界半径：20px；填充：30px；背景滤光片：模糊(10px)；边界：2px固体#a855f7；}
+。 管理盒 {显示: 没有一个;}
+H2{文本对齐：中心；颜色：#f0c8ff；底边距：30px；字体大小：26PX；}
+。输入框{边缘：20px0；}
+标签{显示：块；底边距：8px；颜色：#d8b4fe；字体大小：16px；}
+输入，选择{宽度：100%；填充：12px；边界：2px固体#7e22ce；边界半径：10px；背景：RGBA(0,0,0,0.3);颜色：白色的；字体大小：16px；概要：没有一个；}
+输入：：占位符{颜色：#9ca3af；}
+。BTN{宽度：100%；填充：15px；边境：没有一个；边界半径：10PX；字体大小：18px；字体粗细：大胆的；光标：指针；上边距：10PX；背景：线性梯度(90deg，#9333ea，#c084fc)；颜色：白色的；过渡：所有0.3s；}
+.btn：盘旋{改变：translateY(-3px)；箱形阴影：05px15px RGBA(147,51,234,0.5);}
+。btn-群{显示：网格；网格模板列：1FR1FR；差距：10px；上边距：10px；}
+。sub-btn{背景：线性梯度(90deg，#3b82f6，#60a5fa)；}
+。模态的{位置：确定的；顶端：0；左：0；宽度：100%；高度：100%；背景：RGBA(0,0,0,0.7);显示：没有一个；justify-content：中心；对齐项目：中心；Z指数：999；}
+。模态内容{背景：#18181b；边界：2px固体#a855f7；边界半径：15px；填充：30px；文本对齐：中心；宽度：80%；最大宽度：400PX；}
+。模态内容H3{颜色：#f0c8ff；底边距：20px；}
+。模态内容p{字体大小：18px；边缘：10px0；颜色：#e5e7eb；}
+.close-btn{上边距：20px；填充：10px30px；背景：#7e22ce；颜色：白色的；边界半径：8PX；边境：没有一个；光标：指针；}
+。提示{颜色：#9ca3af；字体大小：14px；上边距：10px；文本对齐：中心；}
+    </风格>
+</头>
+<身体>
+<! -- 登录界面 -->
+    <div 班级="登录框" 身份标识="登录框">
+        <H2>后台管理系统 - 密码验证</H2>
+        <div 班级="输入框">
+            <标签 为="pwdInput">管理员密码</标签>
+            <输入 类型="密码" 身份标识="pwdInput" 占位符="请输入管理员密码">
+</div></div>
+        <按钮 班级="btn" onClick="checkPwd()">验证登录</按钮>
     </div>
 
-    <!-- 管理界面 -->
-    <div class="admin-box" id="adminBox">
-        <h2>次元签到 - 积分管理中心</h2>
-        <!-- 基础设置：修改签到积分 -->
-        <div class="input-box">
-            <label for="signScoreInput">设置每日签到积分</label>
-            <input type="number" id="signScoreInput" min="1" max="999" placeholder="请输入积分值（1-999）">
-            <button class="btn" onclick="setSignScore()">保存签到积分设置</button>
-        </div>
-        <hr style="margin: 30px 0; border: 1px solid #7e22ce33;">
-        <!-- 单用户管理 -->
-        <div class="input-box">
-            <label for="userQQInput">单用户积分操作（输入QQ号）</label>
-            <input type="text" id="userQQInput" placeholder="请输入用户QQ号">
-            <label for="userScoreInput" style="margin-top: 10px;">积分调整值（正数加/负数减）</label>
-            <input type="number" id="userScoreInput" placeholder="如：+10/-5，直接输数字">
-            <div class="btn-group">
-                <button class="btn sub-btn" onclick="updateUserScore()">执行调整</button>
-                <button class="btn sub-btn" onclick="queryUserScore()">查询该用户</button>
+<! -- 管理界面 -->
+    <div 班级="管理框" 身份标识="adminBox">
+        <H2>静次元签到 - 积分管理中心</H2>
+<! -- 基础设置：修改签到积分 -->
+        <div 班级="输入框">
+            <标签 为="signScoreInput">设置每日签到积分</标签>
+            <输入 类型="数字" 身份标识="signScoreInput" 最小值="1" 最大值="999" 占位符="请输入积分值（1-999）">
+            <按钮 班级="btn" onClick="setSignScore>保存签到积分设置</按钮>
+</div>
+<人力资源 风格="边缘：30px0；边界：1PX固体#7e22ce33；">
+<! -- 单用户管理 -->
+<div班级="输入框">
+            <标签 为="userQQInput">单用户积分操作（输入QQ号）</标签>
+            <输入 类型="文本" 身份标识="userQQInput" 占位符="请输入用户QQ号">
+            <标签 为="userScoreInput" 风格="上边距：10px；">积分调整值（正数加/负数减）</标签>
+            <输入 类型="数字" 身份标识="userScoreInput" 占位符="如：+10/-5，直接输数字">
+            <div 班级="btn组">
+                <按钮 班级="btn sub-btn" onClick="updateUserScore()">执行调整</按钮>
+                <按钮 班级="btn sub-btn" onClick="queryUserScore()">查询该用户</按钮>
             </div>
+</div>
+        <人力资源 风格="边缘：30px0；边界：1PX固体#7e22ce33；">
+<! -- 全员积分管理 -->
+        <div 班级="输入框">
+            <标签 为="allScoreInput">全员积分批量调整</标签>
+            <输入 类型="数字" 身份标识="allScoreInput" 占位符="积分调整值（正数加/负数减）">
+            <按钮 班级="btn" onClick="updateAllScore()">执行全员积分调整</按钮>
+            <p 班级="提示">⚠️    谨慎操作！ 该操作会修改所有用户的积分</p>
         </div>
-        <hr style="margin: 30px 0; border: 1px solid #7e22ce33;">
-        <!-- 全员积分管理 -->
-        <div class="input-box">
-            <label for="allScoreInput">全员积分批量调整</label>
-            <input type="number" id="allScoreInput" placeholder="积分调整值（正数加/负数减）">
-            <button class="btn" onclick="updateAllScore()">执行全员积分调整</button>
-            <p class="tip">⚠️ 谨慎操作！该操作会修改所有用户的积分</p>
+</div>
+
+<! -- 弹窗 -->
+    <div 班级="模态" 身份标识="模态">
+        <div 班级="模态内容">
+            <H3 身份标识="modalTitle">操作成功</H3>
+            <p 身份标识="modalText">设置已生效，数据已同步</p>
+            <按钮 班级="close-btn" onClick="closeModal()">确定</按钮>
         </div>
     </div>
 
-    <!-- 弹窗 -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <h3 id="modalTitle">操作成功</h3>
-            <p id="modalText">设置已生效，数据已同步</p>
-            <button class="close-btn" onclick="closeModal()">确定</button>
-        </div>
-    </div>
+    <脚本>
+Const admin_PWD='ZZW20081213'；//固定管理员密码
+// 弹窗控制
+功能openModal(标题，文本){
+文件.getElementById('modalTitle')。内部文本=标题；
+文件.getElementById('modalText')。内部文本=文本；
+文件.getElementById('modal')。风格.显示='柔性'；
+}
+函数closeModal(){document.getElementById('modal')。风格。显示='无'；}
+//QQ号验证
+函数checkQQ(qq){return/^[1-9]\d{4,14}$/.test(qq);}
 
-    <script>
-        const ADMIN_PWD = 'ZZW20081213'; // 固定管理员密码
-        // 弹窗控制
-        function openModal(title, text) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalText').innerText = text;
-            document.getElementById('modal').style.display = 'flex';
-        }
-        function closeModal() {document.getElementById('modal').style.display = 'none';}
-        // QQ号验证
-        function checkQQ(qq) {return /^[1-9]\d{4,14}$/.test(qq);}
-
-        // 密码验证
-        function checkPwd() {
-            const pwd = document.getElementById('pwdInput').value.trim();
-            if (pwd === ADMIN_PWD) {
-                document.getElementById('loginBox').style.display = 'none';
-                document.getElementById('adminBox').style.display = 'block';
-                // 加载当前签到积分
-                fetch('data.json').then(res => res.json()).then(data => {
-                    document.getElementById('signScoreInput').value = data.signScore;
+// 密码验证
+函数checkPwd(){
+常数密码=文件。getElementById('pwdInput')。价值。修剪()；
+if(pwd===ADMIN_PWD){
+文件。getElementById('loginbox')。风格。显示='无'；
+文件。getElementById('adminBox')。风格。显示='块'；
+// 加载当前签到积分
+fetch('data.json')。然后(res=>res.json())。然后(data=>{
+文件。getElementById('signScoreInput')。价值=data.signScore；
                 });
-            } else {
-                openModal('验证失败', '密码错误，请重新输入！');
+}其他{
+openModal('验证失败'，'密码错误，请重新输入！')；
             }
         }
 
-        // 1. 设置每日签到积分
-        async function setSignScore() {
-            const score = parseInt(document.getElementById('signScoreInput').value);
-            if (isNaN(score) || score < 1 || score > 999) {
-                openModal('输入错误', '请输入1-999之间的有效数字！');
-                return;
-            }
-            try {
-                const res = await fetch('data.json');
-                let data = await res.json();
-                data.signScore = score;
-                await fetch(window.location.href + 'data.json', {
-                    method: 'PUT',
-                    body: JSON.stringify(data, null, 2),
-                    headers: {'Content-Type': 'application/json'}
+// 1. 设置每日签到积分
+异步函数setSignScore(){
+Const score=parseInt(document.getElementById('signScoreInput')。价值)；
+if(isNaN(score)||score<1||评分>999){
+openModal('输入错误'，'请输入1-999之间的有效数字！')；
+返回；
+}
+尝试{
+常数res=等待提取('data.json')；
+let data=await res.json()；
+data.signScore=分数；
+等待提取(window.location.href+'data.json'，{
+方法：'Put'，
+正文：JSON.stringify(数据，null，2)，
+标头：{'Content-Type'：'application/json'}
                 });
-                openModal('设置成功', `每日签到积分已设置为${score}分，立即生效！`);
-            } catch (err) {
-                openModal('操作失败', '网络错误，请稍后重试～');
-                console.error(err);
+openModal('设置成功'，‘每日签到积分已设置为${score}分，立即生效！‘)；
+}catch(err){
+openModal('操作失败'，'网络错误，请稍后重试~')；
+console.error(err)；
             }
         }
 
-        // 2. 单用户积分调整
-        async function updateUserScore() {
-            const qq = document.getElementById('userQQInput').value.trim();
-            const score = parseInt(document.getElementById('userScoreInput').value);
-            if (!checkQQ(qq)) {
-                openModal('输入错误', '请输入有效的QQ号！');
-                return;
+// 2. 单用户积分调整
+异步函数updateUserScore(){
+常数qq=文件.getElementById('userQQInput').价值。修剪()；
+Const score=parseInt(document.getElementById('userScoreInput')。价值)；
+if(！checkQQ(qq)){
+openModal('输入错误'，'请输入有效的QQ号！')；
+返回；
+}
+if(isNaN(分数)){
+openModal('输入错误'，'请输入有效的积分调整值！')；
+返回；
             }
-            if (isNaN(score)) {
-                openModal('输入错误', '请输入有效的积分调整值！');
-                return;
-            }
-            try {
-                const res = await fetch('data.json');
-                let data = await res.json();
-                const user = data.users.find(u => u.qq === qq);
-                if (!user) {
-                    openModal('操作失败', `QQ号${qq}暂无记录，无法调整！`);
-                    return;
+尝试{
+常数res=等待提取('data.json')；
+let data=await res.json()；
+Const user=data.users.find(u=>u.qq===qq)；
+if(！user){
+openModal('操作失败'，'QQ号${qq}暂无记录，无法调整！‘)；
+返回；
                 }
-                const oldScore = user.score;
-                user.score += score;
-                user.score = Math.max(0, user.score); // 积分不小于0
-                await fetch(window.location.href + 'data.json', {
-                    method: 'PUT',
-                    body: JSON.stringify(data, null, 2),
-                    headers: {'Content-Type': 'application/json'}
+Const oldScore=user.score；
+user.score+=score；
+user.score=Math.max(0，user.score)；//积分不小于0
+等待提取(window.location.href+'data.json'，{
+方法：'放'，
+正文：JSON.stringify(数据，null，2)，
+标头：{'Content-Type'：'application/json'}
                 });
-                openModal('调整成功', `QQ${qq}：原积分${oldScore} → 新积分${user.score}（调整${score}分）`);
-            } catch (err) {
-                openModal('操作失败', '网络错误，请稍后重试～');
-                console.error(err);
+openModal('调整成功'，'QQ${qq}：原积分${oldScore}→新积分${user.score}（调整${score}分）‘)；
+}catch(err){
+openModal('操作失败'，'网络错误，请稍后重试~')；
+console.error(err)；
+}
+}
+
+// 3. 查询单用户
+异步函数queryUserScore(){
+常数qq=文件.getElementById('userQQInput').价值。修剪()；
+if(！checkQQ(qq)){
+openModal('输入错误'，'请输入有效的QQ号！')；
+返回；
+            }
+尝试{
+常数res=等待提取('data.json')；
+Const data=await res.json()；
+Const user=data.users.find(u=>u.qq===qq)；
+if(用户){
+openModal('查询结果'，'QQ${qq}：当前积分${user.score}，最后签到：${user.lastSign||'从未签到'}‘)；
+}else{
+openModal('查询结果'，'QQ${qq}：暂无任何记录！‘)；
+                }
+}catch(err){
+openModal('查询失败'，'网络错误，请稍后重试~')；
+console.error(err)；
             }
         }
 
-        // 3. 查询单用户
-        async function queryUserScore() {
-            const qq = document.getElementById('userQQInput').value.trim();
-            if (!checkQQ(qq)) {
-                openModal('输入错误', '请输入有效的QQ号！');
-                return;
+// 4. 全员积分调整
+异步函数updateAllScore(){
+Const score=parseInt(document.getElementById('allScoreInput')。价值)；
+if(isNaN(分数)){
+openModal('输入错误'，'请输入有效的积分调整值！')；
+返回；
             }
-            try {
-                const res = await fetch('data.json');
-                const data = await res.json();
-                const user = data.users.find(u => u.qq === qq);
-                if (user) {
-                    openModal('查询结果', `QQ${qq}：当前积分${user.score}，最后签到：${user.lastSign || '从未签到'}`);
-                } else {
-                    openModal('查询结果', `QQ${qq}：暂无任何记录！`);
+if(！确认(‘确认要对所有用户调整${score}分吗？该操作不可撤销！‘)){
+返回；
+            }
+尝试{
+常数res=等待提取('data.json')；
+let data=await res.json()；
+if(data.users.length===0){
+openModal('操作失败'，'暂无用户数据，无需调整！')；
+返回；
                 }
-            } catch (err) {
-                openModal('查询失败', '网络错误，请稍后重试～');
-                console.error(err);
+// 遍历所有用户调整积分
+data.users.forEach(user=>{
+user.score+=score；
+user.score=Math.max(0，user.score)；//积分不小于0
+                });
+等待提取(window.location.href+'data.json'，{
+方法：'Put'，
+正文：JSON.stringify(数据，null，2)，
+标头：{'Content-Type'：'application/json'}
+});
+openModal('全员调整成功'，‘已对${data.users.length}位用户调整${score}分，所有用户积分已同步！‘)；
+}catch(err){
+openModal('操作失败'，'网络错误，请稍后重试~')；
+console.error(err)；
             }
         }
-
-        // 4. 全员积分调整
-        async function updateAllScore() {
-            const score = parseInt(document.getElementById('allScoreInput').value);
-            if (isNaN(score)) {
-                openModal('输入错误', '请输入有效的积分调整值！');
-                return;
-            }
-            if (!confirm(`确认要对所有用户调整${score}分吗？该操作不可撤销！`)) {
-                return;
-            }
-            try {
-                const res = await fetch('data.json');
-                let data = await res.json();
-                if (data.users.length === 0) {
-                    openModal('操作失败', '暂无用户数据，无需调整！');
-                    return;
-                }
-                // 遍历所有用户调整积分
-                data.users.forEach(user => {
-                    user.score += score;
-                    user.score = Math.max(0, user.score); // 积分不小于0
-                });
-                await fetch(window.location.href + 'data.json', {
-                    method: 'PUT',
-                    body: JSON.stringify(data, null, 2),
-                    headers: {'Content-Type': 'application/json'}
-                });
-                openModal('全员调整成功', `已对${data.users.length}位用户调整${score}分，所有用户积分已同步！`);
-            } catch (err) {
-                openModal('操作失败', '网络错误，请稍后重试～');
-                console.error(err);
-            }
-        }
-    </script>
-</body>
-</html>
+    </脚本>
+</身体>
+</超文本标记语言>
