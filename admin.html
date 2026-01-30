@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>次元签到 - 后台管理</title>
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box; font-family: "微软雅黑", sans-serif;}
+        body {background: linear-gradient(135deg, #27272a, #18181b); min-height: 100vh; padding: 20px; color: white;}
+        .login-box, .admin-box {max-width: 600px; margin: 80px auto; background: rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; backdrop-filter: blur(10px); border: 2px solid #a855f7;}
+        .admin-box {display: none;}
+        h2 {text-align: center; color: #f0c8ff; margin-bottom: 30px; font-size: 26px;}
+        .input-box {margin: 20px 0;}
+        label {display: block; margin-bottom: 8px; color: #d8b4fe; font-size: 16px;}
+        input, select {width: 100%; padding: 12px; border: 2px solid #7e22ce; border-radius: 10px; background: rgba(0,0,0,0.3); color: white; font-size: 16px; outline: none;}
+        input::placeholder {color: #9ca3af;}
+        .btn {width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; background: linear-gradient(90deg, #9333ea, #c084fc); color: white; transition: all 0.3s;}
+        .btn:hover {transform: translateY(-3px); box-shadow: 0 5px 15px rgba(147,51,234,0.5);}
+        .btn-group {display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;}
+        .sub-btn {background: linear-gradient(90deg, #3b82f6, #60a5fa);}
+        .modal {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 999;}
+        .modal-content {background: #18181b; border: 2px solid #a855f7; border-radius: 15px; padding: 30px; text-align: center; width: 80%; max-width: 400px;}
+        .modal-content h3 {color: #f0c8ff; margin-bottom: 20px;}
+        .modal-content p {font-size: 18px; margin: 10px 0; color: #e5e7eb;}
+        .close-btn {margin-top: 20px; padding: 10px 30px; background: #7e22ce; color: white; border-radius: 8px; border: none; cursor: pointer;}
+        .tip {color: #9ca3af; font-size: 14px; margin-top: 10px; text-align: center;}
+    </style>
+</head>
+<body>
+    <!-- 登录界面 -->
+    <div class="login-box" id="loginBox">
+        <h2>后台管理系统 - 密码验证</h2>
+        <div class="input-box">
+            <label for="pwdInput">管理员密码</label>
+            <input type="password" id="pwdInput" placeholder="请输入管理员密码">
+        </div>
+        <button class="btn" onclick="checkPwd()">验证登录</button>
+    </div>
+
+    <!-- 管理界面 -->
+    <div class="admin-box" id="adminBox">
+        <h2>次元签到 - 积分管理中心</h2>
+        <!-- 基础设置：修改签到积分 -->
+        <div class="input-box">
+            <label for="signScoreInput">设置每日签到积分</label>
+            <input type="number" id="signScoreInput" min="1" max="999" placeholder="请输入积分值（1-999）">
+            <button class="btn" onclick="setSignScore()">保存签到积分设置</button>
+        </div>
+        <hr style="margin: 30px 0; border: 1px solid #7e22ce33;">
+        <!-- 单用户管理 -->
+        <div class="input-box">
+            <label for="userQQInput">单用户积分操作（输入QQ号）</label>
+            <input type="text" id="userQQInput" placeholder="请输入用户QQ号">
+            <label for="userScoreInput" style="margin-top: 10px;">积分调整值（正数加/负数减）</label>
+            <input type="number" id="userScoreInput" placeholder="如：+10/-5，直接输数字">
+            <div class="btn-group">
+                <button class="btn sub-btn" onclick="updateUserScore()">执行调整</button>
+                <button class="btn sub-btn" onclick="queryUserScore()">查询该用户</button>
+            </div>
+        </div>
+        <hr style="margin: 30px 0; border: 1px solid #7e22ce33;">
+        <!-- 全员积分管理 -->
+        <div class="input-box">
+            <label for="allScoreInput">全员积分批量调整</label>
+            <input type="number" id="allScoreInput" placeholder="积分调整值（正数加/负数减）">
+            <button class="btn" onclick="updateAllScore()">执行全员积分调整</button>
+            <p class="tip">⚠️ 谨慎操作！该操作会修改所有用户的积分</p>
+        </div>
+    </div>
+
+    <!-- 弹窗 -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">操作成功</h3>
+            <p id="modalText">设置已生效，数据已同步</p>
+            <button class="close-btn" onclick="closeModal()">确定</button>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_PWD = 'ZZW20081213'; // 固定管理员密码
+        // 弹窗控制
+        function openModal(title, text) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalText').innerText = text;
+            document.getElementById('modal').style.display = 'flex';
+        }
+        function closeModal() {document.getElementById('modal').style.display = 'none';}
+        // QQ号验证
+        function checkQQ(qq) {return /^[1-9]\d{4,14}$/.test(qq);}
+
+        // 密码验证
+        function checkPwd() {
+            const pwd = document.getElementById('pwdInput').value.trim();
+            if (pwd === ADMIN_PWD) {
+                document.getElementById('loginBox').style.display = 'none';
+                document.getElementById('adminBox').style.display = 'block';
+                // 加载当前签到积分
+                fetch('data.json').then(res => res.json()).then(data => {
+                    document.getElementById('signScoreInput').value = data.signScore;
+                });
+            } else {
+                openModal('验证失败', '密码错误，请重新输入！');
+            }
+        }
+
+        // 1. 设置每日签到积分
+        async function setSignScore() {
+            const score = parseInt(document.getElementById('signScoreInput').value);
+            if (isNaN(score) || score < 1 || score > 999) {
+                openModal('输入错误', '请输入1-999之间的有效数字！');
+                return;
+            }
+            try {
+                const res = await fetch('data.json');
+                let data = await res.json();
+                data.signScore = score;
+                await fetch(window.location.href + 'data.json', {
+                    method: 'PUT',
+                    body: JSON.stringify(data, null, 2),
+                    headers: {'Content-Type': 'application/json'}
+                });
+                openModal('设置成功', `每日签到积分已设置为${score}分，立即生效！`);
+            } catch (err) {
+                openModal('操作失败', '网络错误，请稍后重试～');
+                console.error(err);
+            }
+        }
+
+        // 2. 单用户积分调整
+        async function updateUserScore() {
+            const qq = document.getElementById('userQQInput').value.trim();
+            const score = parseInt(document.getElementById('userScoreInput').value);
+            if (!checkQQ(qq)) {
+                openModal('输入错误', '请输入有效的QQ号！');
+                return;
+            }
+            if (isNaN(score)) {
+                openModal('输入错误', '请输入有效的积分调整值！');
+                return;
+            }
+            try {
+                const res = await fetch('data.json');
+                let data = await res.json();
+                const user = data.users.find(u => u.qq === qq);
+                if (!user) {
+                    openModal('操作失败', `QQ号${qq}暂无记录，无法调整！`);
+                    return;
+                }
+                const oldScore = user.score;
+                user.score += score;
+                user.score = Math.max(0, user.score); // 积分不小于0
+                await fetch(window.location.href + 'data.json', {
+                    method: 'PUT',
+                    body: JSON.stringify(data, null, 2),
+                    headers: {'Content-Type': 'application/json'}
+                });
+                openModal('调整成功', `QQ${qq}：原积分${oldScore} → 新积分${user.score}（调整${score}分）`);
+            } catch (err) {
+                openModal('操作失败', '网络错误，请稍后重试～');
+                console.error(err);
+            }
+        }
+
+        // 3. 查询单用户
+        async function queryUserScore() {
+            const qq = document.getElementById('userQQInput').value.trim();
+            if (!checkQQ(qq)) {
+                openModal('输入错误', '请输入有效的QQ号！');
+                return;
+            }
+            try {
+                const res = await fetch('data.json');
+                const data = await res.json();
+                const user = data.users.find(u => u.qq === qq);
+                if (user) {
+                    openModal('查询结果', `QQ${qq}：当前积分${user.score}，最后签到：${user.lastSign || '从未签到'}`);
+                } else {
+                    openModal('查询结果', `QQ${qq}：暂无任何记录！`);
+                }
+            } catch (err) {
+                openModal('查询失败', '网络错误，请稍后重试～');
+                console.error(err);
+            }
+        }
+
+        // 4. 全员积分调整
+        async function updateAllScore() {
+            const score = parseInt(document.getElementById('allScoreInput').value);
+            if (isNaN(score)) {
+                openModal('输入错误', '请输入有效的积分调整值！');
+                return;
+            }
+            if (!confirm(`确认要对所有用户调整${score}分吗？该操作不可撤销！`)) {
+                return;
+            }
+            try {
+                const res = await fetch('data.json');
+                let data = await res.json();
+                if (data.users.length === 0) {
+                    openModal('操作失败', '暂无用户数据，无需调整！');
+                    return;
+                }
+                // 遍历所有用户调整积分
+                data.users.forEach(user => {
+                    user.score += score;
+                    user.score = Math.max(0, user.score); // 积分不小于0
+                });
+                await fetch(window.location.href + 'data.json', {
+                    method: 'PUT',
+                    body: JSON.stringify(data, null, 2),
+                    headers: {'Content-Type': 'application/json'}
+                });
+                openModal('全员调整成功', `已对${data.users.length}位用户调整${score}分，所有用户积分已同步！`);
+            } catch (err) {
+                openModal('操作失败', '网络错误，请稍后重试～');
+                console.error(err);
+            }
+        }
+    </script>
+</body>
+</html>
